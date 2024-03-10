@@ -9,7 +9,6 @@ generator client {
 
 model x_world {
   fieldid Int @id
-
   tid Int
   vid Int
   villagename String

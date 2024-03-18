@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch -r dotenv/config ./src/index.ts",
     "start": "node ./dist/index.js",
-    "build": "tsc --build"
+    "build": "tsc -p tsconfig-build.json",
+    "lint": "eslint . --ext ts",
+    "prisma:migration": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "@prisma/client": "^5.10.1",
     "argon2": "^0.31.2",
     "cors": "^2.8.5",
+    "dotenv-extended": "^2.9.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "line-reader": "^0.4.0",
@@ -31,10 +34,11 @@
     "@types/line-reader": "^0.0.37",
     "@types/node": "^20.9.2",
     "@types/pg": "^8.10.7",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.5",
     "nodemon": "^3.0.1",
     "prisma": "^5.10.0",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vitest": "^1.4.0"
   }
 }

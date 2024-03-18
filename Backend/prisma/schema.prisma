@@ -26,8 +26,8 @@ model x_world {
 }
 
 model users {
-  username String @id
-  playerid Int
+  username String 
+  playerid Int @id
   password String
 }
 

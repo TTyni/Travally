@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=$PG_PASSWORD
+      - POSTGRES_USER=$PG_USERNAME
+      - POSTGRES_DB=postgres
+    healthcheck:
+      test: pg_isready -U $PG_USERNAME -d $PG_DATABASE
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    depends_on:
+      postgres:
+        condition: service_healthy
+    build: ./backend
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: "postgresql://${PG_USERNAME}:${PG_PASSWORD}@postgres:5432/postgres?schema=public"
+      BACKEND_PORT: 3000
+
+  frontend:
+    build: ./frontend
+    restart: always
+    ports:
+      - $FRONTEND_PORT:80

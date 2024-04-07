@@ -5,8 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
-
 model x_world {
   fieldid Int @id
   tid Int

@@ -1,7 +1,10 @@
-import fs from "fs";
+import fs, { WriteStream } from "fs";
 import pg from "pg";
+import https from "https";
 
 const { PG_HOST, PG_PORT, PG_USERNAME, PG_PASSWORD, PG_DATABASE } = process.env;
+const url: string = "https://ts2.x1.europe.travian.com/map.sql";
+const worldName: string = "EU2";
 
 const pool = new pg.Pool({
   host: PG_HOST,
@@ -10,6 +13,18 @@ const pool = new pg.Pool({
   password: String(PG_PASSWORD),
   database: PG_DATABASE,
 });
+
+const downloadMap = () => {
+  https.get(url, (res) => {
+    const path: string = `${__dirname}/map.sql`;
+    const filePath: WriteStream = fs.createWriteStream(path);
+    res.pipe(filePath);
+    filePath.on('finish', () => {
+      filePath.close();
+      console.log('Download Completed');
+    })
+  })
+};
 
 //fills the main x_world table with data from map.sql
 const readMap = () => {
@@ -25,7 +40,7 @@ const readMap = () => {
 //creates Tables
 const createTables = () => {
   const createMapTable = `
-  CREATE x_world (
+  CREATE ${worldName} (
     fieldID integer, 
     X smallint, 
     Y smallint, 
@@ -87,4 +102,4 @@ const executeQuery = async (query: string, parameters?: Array<any>) => {
   }
 };
 
-export default { readMap, executeQuery, createTables };
+export default { readMap, executeQuery, createTables, downloadMap };

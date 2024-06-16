@@ -1,5 +1,5 @@
 import express, { json, urlencoded } from "express";
-import readMap from "./db.js";
+import { downloadMap, executeSqlFile } from "./db.js";
 import cors from "cors";
 import {
   errorHandler,
@@ -15,19 +15,15 @@ server.use(express.urlencoded({ extended: false }));
 server.use(cors());
 server.use(logger);
 
-//edit to true to read map.sql and insert into database
-if (false) {
-  readMap.readMap();
+const initdb = async () => {
+  //downloadMap();
+  executeSqlFile();
 }
-
-//edit to true to create tables to database
-if (false) {
-  readMap.createTables();
-}
+initdb();
 
 const { PORT } = process.env;
 server.listen(PORT, () => {
-  console.log("Products API listening to port", PORT);
+  console.log("listening to port", PORT);
 });
 
 server.use(unknownEndpoint);

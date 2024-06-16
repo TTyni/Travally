@@ -2,6 +2,10 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const addField = async (obj) => {
+    return await prisma.x_world.create(obj)
+}
+
 const getByFieldid = async (fieldid: number) => {
     return await prisma.x_world.findUnique({
         where: { fieldid: fieldid },
@@ -40,4 +44,4 @@ const deleteByid = async (fieldid) => {
 }
 
 
-export { getByFieldid, getAllFields, getPlayerByFieldid, getAlliance, getAllAlliances, deleteByid }
+export { getByFieldid, getAllFields, getPlayerByFieldid, getAlliance, getAllAlliances, deleteByid, addField }

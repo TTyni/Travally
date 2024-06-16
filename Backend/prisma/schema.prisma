@@ -7,20 +7,21 @@ generator client {
 
 model x_world {
   fieldid Int @id
-  tid Int
-  vid Int
+  x Int
+  y Int
+  tribeid Int
+  villageid Int
   villagename String
   playerid Int
-  playername String
+  playername String 
   allianceid Int
-  alliance String
+  alliancetag String
   population Int
-  region String
+  region String? 
   capital Boolean
-  city Boolean
-  harbor Boolean
-  victorypoints Int
-  tags tags[]
+  city Boolean?
+  harbor Boolean?
+  victorypoints Int?
 }
 
 model users {
@@ -28,20 +29,13 @@ model users {
   playerid Int @id
   password String
 }
-
-model tags {   
-  id Int @id @default(autoincrement())
-  fielddata x_world @relation(fields: [id], references: [fieldid], onDelete: Cascade)
-  off Boolean
-  def Boolean
-  target Boolean
-  }
   
 model incomings {
   fielddata Int @id
   x Int
   y Int
   arrivaltime DateTime
+  allianceid Int
 }
 
 datasource db {

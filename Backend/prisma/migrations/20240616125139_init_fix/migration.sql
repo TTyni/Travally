@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "x_world" ALTER COLUMN "region" DROP NOT NULL,
+ALTER COLUMN "city" DROP NOT NULL,
+ALTER COLUMN "harbor" DROP NOT NULL,
+ALTER COLUMN "victorypoints" DROP NOT NULL;

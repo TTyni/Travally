@@ -251,7 +251,7 @@ const Planner = () => {
                     <td>{target.Playername}</td>
                     <td>
                       <a
-                        href={`https://ts5.x1.europe.travian.com/karte.php?x=${target.X}&y=${target.Y}`}
+                        href={`https://ts2.x1.europe.travian.com/karte.php?x=${target.X}&y=${target.Y}`}
                       >
                         {target.X}|{target.Y}
                       </a>

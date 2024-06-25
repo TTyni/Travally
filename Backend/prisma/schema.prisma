@@ -6,36 +6,36 @@ generator client {
 }
 
 model x_world {
-  fieldid Int @id
-  x Int
-  y Int
-  tribeid Int
-  villageid Int
-  villagename String
-  playerid Int
-  playername String 
-  allianceid Int
-  alliancetag String
-  population Int
-  region String? 
-  capital Boolean
-  city Boolean?
-  harbor Boolean?
+  fieldid       Int      @id
+  x             Int
+  y             Int
+  tribeid       Int
+  villageid     Int
+  villagename   String
+  playerid      Int
+  playername    String
+  allianceid    Int
+  alliancetag   String
+  population    Int
+  region        String?
+  capital       Boolean
+  city          Boolean?
+  harbor        Boolean?
   victorypoints Int?
 }
 
 model users {
-  username String 
-  playerid Int @id
+  username String
+  playerid Int    @id
   password String
 }
-  
+
 model incomings {
-  fielddata Int @id
-  x Int
-  y Int
+  fielddata   Int      @id
+  x           Int
+  y           Int
   arrivaltime DateTime
-  allianceid Int
+  allianceid  Int
 }
 
 datasource db {
